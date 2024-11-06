@@ -12,11 +12,15 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
 } from "react-native";
-export default function Card({ name, message, image }) {
+export default function Card({ name, message, image, font }) {
   return (
     <View style={styles.container}>
       <View style={styles.border}>
-        <Text style={styles.cardTitle}>Happy Birthday</Text>
+        <Text
+          style={[font === "Poppins" ? styles.cardTitle : styles.cardTitle2]}
+        >
+          Happy Birthday
+        </Text>
 
         <Text style={styles.formTitle}>{name}</Text>
 
@@ -87,6 +91,15 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 42,
     fontFamily: "Poppins-Regular",
+    fontWeight: "bold",
+    fontStyle: "italic",
+    textAlign: "center",
+    marginVertical: 5,
+    color: "#2A4849",
+  },
+  cardTitle2: {
+    fontSize: 42,
+    fontFamily: "sans-serif",
     fontWeight: "bold",
     fontStyle: "italic",
     textAlign: "center",

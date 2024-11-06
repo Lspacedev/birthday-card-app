@@ -14,12 +14,15 @@ import {
 } from "react-native";
 
 import CustomInput from "./CustomInput";
+
 export default function Form({
   setName,
   setMessage,
   handleOnPress,
   closeForm,
   pickImage,
+  handleColorSelect,
+  changeFont,
 }) {
   return (
     <View style={styles.modal}>
@@ -38,14 +41,23 @@ export default function Form({
         <Pressable onPress={pickImage}>
           <Text style={styles.imageUpload}>Pick an image from camera roll</Text>
         </Pressable>
-        {/* <Pressable
+
+        <Pressable
           style={styles.button}
           onPress={() => {
-            handleOnPress();
+            changeFont("Poppins");
           }}
         >
-          <Text style={styles.buttonText}>Submit</Text>
-        </Pressable> */}
+          <Text style={styles.buttonText}>Poppins</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            changeFont("Sans");
+          }}
+        >
+          <Text style={styles.buttonText}>Sans serif</Text>
+        </Pressable>
       </View>
     </View>
   );

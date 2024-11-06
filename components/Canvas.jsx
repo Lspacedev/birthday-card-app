@@ -27,6 +27,8 @@ export default function Canvas() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [image, setImage] = useState("");
+  const [color, setColor] = useState("");
+  const [font, setFont] = useState("Poppins-Regular");
 
   const [errors, setErrors] = useState([]);
   const [openForm, setOpenForm] = useState(false);
@@ -71,6 +73,10 @@ export default function Canvas() {
       setImage(result.assets[0].uri);
     }
   };
+  const handleColorSelect = (color) => {
+    setColor(color);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
@@ -89,13 +95,18 @@ export default function Canvas() {
             handleOnPress={handleOnPress}
             closeForm={() => setOpenForm(false)}
             pickImage={pickImage}
+            handleColorSelect={handleColorSelect}
+            changeFont={setFont}
           />
         </Modal>
         {openForm === false && (
-          <CustomButton name={"Edit"} handleOnPress={() => setOpenForm(true)} />
+          <CustomButton
+            name={"Create"}
+            handleOnPress={() => setOpenForm(true)}
+          />
         )}
         {name !== "" && message !== "" ? (
-          <Card name={name} message={message} image={image} />
+          <Card name={name} message={message} image={image} font={font} />
         ) : (
           <Text>No card created</Text>
         )}
