@@ -12,53 +12,66 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
 } from "react-native";
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_700Bold_Italic,
+} from "@expo-google-fonts/poppins";
 export default function Card({ name, message, image, font }) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.border}>
-        <Text
-          style={[font === "Poppins" ? styles.cardTitle : styles.cardTitle2]}
-        >
-          Happy Birthday
-        </Text>
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_700Bold_Italic,
+  });
 
-        <Text style={styles.formTitle}>{name}</Text>
+  if (!fontsLoaded) {
+    return <View></View>;
+  } else {
+    return (
+      <View style={styles.container}>
+        <View style={styles.border}>
+          <Text
+            style={[font === "Poppins" ? styles.cardTitle : styles.cardTitle2]}
+          >
+            Happy Birthday
+          </Text>
 
-        <View style={styles.imageBorder}>
-          {image !== "" && (
-            <Image source={{ uri: image }} style={styles.image} />
-          )}
+          <Text style={styles.formTitle}>{name}</Text>
+
+          <View style={styles.imageBorder}>
+            {image !== "" && (
+              <Image source={{ uri: image }} style={styles.image} />
+            )}
+          </View>
+          <Text style={styles.messageText}>{message}</Text>
         </View>
-        <Text style={styles.messageText}>{message}</Text>
-      </View>
-      <View style={styles.bottomDecoration}>
-        <Image
-          style={styles.decoration}
-          source={require("@/assets/images/balloon.png")}
-        />
-        <Image
-          style={styles.decoration}
-          source={require("@/assets/images/balloon.png")}
-        />
+        <View style={styles.bottomDecoration}>
+          <Image
+            style={styles.decoration}
+            source={require("@/assets/images/balloon.png")}
+          />
+          <Image
+            style={styles.decoration}
+            source={require("@/assets/images/balloon.png")}
+          />
 
-        <Image
-          style={styles.decoration}
-          source={require("@/assets/images/balloon.png")}
-        />
-      </View>
+          <Image
+            style={styles.decoration}
+            source={require("@/assets/images/balloon.png")}
+          />
+        </View>
 
-      {/* <Pressable
+        {/* <Pressable
         onPress={() => {
           closeForm();
         }}
       >
         <Text style={styles.formTitle}>x</Text>
       </Pressable> */}
-      {/* 
+        {/* 
       <CustomInput name={"Name"} onChange={setName} />
       <CustomInput name={"Message"} onChange={setMessage} /> */}
 
-      {/* <Pressable
+        {/* <Pressable
         style={styles.button}
         onPress={() => {
           handleOnPress();
@@ -66,8 +79,9 @@ export default function Card({ name, message, image, font }) {
       >
         <Text style={styles.buttonText}>Submit</Text>
       </Pressable> */}
-    </View>
-  );
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -86,11 +100,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginVertical: 15,
     padding: 5,
-    border: "1px solid #FFFBFE",
+    border: "1px solid white",
   },
   cardTitle: {
     fontSize: 42,
-    fontFamily: "Poppins-Regular",
+    fontFamily: "Poppins_700Bold_Italic",
     fontWeight: "bold",
     fontStyle: "italic",
     textAlign: "center",
@@ -116,7 +130,7 @@ const styles = StyleSheet.create({
 
   messageText: {
     fontSize: 21,
-    fontFamily: "Poppins-Regular",
+    fontFamily: "Poppins_400Regular",
     fontStyle: "italic",
     marginVertical: 5,
     color: "#BDBDBD",

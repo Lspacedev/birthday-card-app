@@ -27,18 +27,20 @@ export default function Form({
   return (
     <View style={styles.modal}>
       <View style={styles.form}>
-        <Text style={styles.formTitle}>Enter Card Info </Text>
         <Pressable
+          style={styles.closeBtn}
           onPress={() => {
             closeForm();
           }}
         >
-          <Text style={styles.formTitle}>x</Text>
+          <Text style={styles.close}>x</Text>
         </Pressable>
+
+        <Text style={styles.formTitle}>Enter card information </Text>
 
         <CustomInput name={"Name"} onChange={setName} />
         <CustomInput name={"Message"} onChange={setMessage} />
-        <Pressable onPress={pickImage}>
+        <Pressable style={styles.imageUploadBtn} onPress={pickImage}>
           <Text style={styles.imageUpload}>Pick an image from camera roll</Text>
         </Pressable>
 
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   formTitle: {
-    fontSize: 26,
+    fontSize: 22,
     marginVertical: 10,
     color: "#BDBDBD",
   },
@@ -94,8 +96,8 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#ECEBE4",
-    padding: 15,
-    paddingHorizontal: 70,
+    padding: 5,
+    paddingHorizontal: 50,
     marginTop: 20,
     borderRadius: 5,
   },
@@ -132,9 +134,22 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
   },
+  imageUploadBtn: {
+    padding: 0,
+    marginLeft: 0,
+  },
   imageUpload: {
     fontSize: 20,
     marginVertical: 10,
     color: "#BDBDBD",
+  },
+  closeBtn: {
+    alignSelf: "flex-end",
+  },
+  close: {
+    color: "#BDBDBD",
+    fontSize: 25,
+    margin: 0,
+    padding: 0,
   },
 });
